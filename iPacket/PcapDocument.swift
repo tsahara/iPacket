@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Document: NSDocument {
+class PcapDocument: NSDocument {
                             
     init() {
         super.init()

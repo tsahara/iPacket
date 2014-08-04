@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F447336198F5022004E5879 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447335198F5022004E5879 /* main.swift */; };
-		1F447338198F5022004E5879 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447337198F5022004E5879 /* Document.swift */; };
-		1F44733B198F5022004E5879 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F447339198F5022004E5879 /* Document.xib */; };
+		1F447338198F5022004E5879 /* PcapDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447337198F5022004E5879 /* PcapDocument.swift */; };
+		1F44733B198F5022004E5879 /* PcapDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F447339198F5022004E5879 /* PcapDocument.xib */; };
 		1F44733D198F5022004E5879 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F44733C198F5022004E5879 /* Images.xcassets */; };
 		1F447340198F5022004E5879 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F44733E198F5022004E5879 /* MainMenu.xib */; };
 		1F44734C198F5022004E5879 /* iPacketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44734B198F5022004E5879 /* iPacketTests.swift */; };
@@ -29,8 +29,8 @@
 		1F447330198F5022004E5879 /* iPacket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPacket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F447334198F5022004E5879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F447335198F5022004E5879 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		1F447337198F5022004E5879 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		1F44733A198F5022004E5879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		1F447337198F5022004E5879 /* PcapDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PcapDocument.swift; sourceTree = "<group>"; };
+		1F44733A198F5022004E5879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PcapDocument.xib; sourceTree = "<group>"; };
 		1F44733C198F5022004E5879 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1F44733F198F5022004E5879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1F447345198F5022004E5879 /* iPacketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iPacketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,8 +77,8 @@
 		1F447332198F5022004E5879 /* iPacket */ = {
 			isa = PBXGroup;
 			children = (
-				1F447337198F5022004E5879 /* Document.swift */,
-				1F447339198F5022004E5879 /* Document.xib */,
+				1F447337198F5022004E5879 /* PcapDocument.swift */,
+				1F447339198F5022004E5879 /* PcapDocument.xib */,
 				1F44733C198F5022004E5879 /* Images.xcassets */,
 				1F44733E198F5022004E5879 /* MainMenu.xib */,
 				1F447333198F5022004E5879 /* Supporting Files */,
@@ -192,7 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F44733B198F5022004E5879 /* Document.xib in Resources */,
+				1F44733B198F5022004E5879 /* PcapDocument.xib in Resources */,
 				1F44733D198F5022004E5879 /* Images.xcassets in Resources */,
 				1F447340198F5022004E5879 /* MainMenu.xib in Resources */,
 			);
@@ -212,7 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F447338198F5022004E5879 /* Document.swift in Sources */,
+				1F447338198F5022004E5879 /* PcapDocument.swift in Sources */,
 				1F447336198F5022004E5879 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,12 +236,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1F447339198F5022004E5879 /* Document.xib */ = {
+		1F447339198F5022004E5879 /* PcapDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1F44733A198F5022004E5879 /* Base */,
 			);
-			name = Document.xib;
+			name = PcapDocument.xib;
 			sourceTree = "<group>";
 		};
 		1F44733E198F5022004E5879 /* MainMenu.xib */ = {
