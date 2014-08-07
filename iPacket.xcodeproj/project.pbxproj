@@ -13,6 +13,7 @@
 		1F44733D198F5022004E5879 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F44733C198F5022004E5879 /* Images.xcassets */; };
 		1F447340198F5022004E5879 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F44733E198F5022004E5879 /* MainMenu.xib */; };
 		1F44734C198F5022004E5879 /* iPacketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44734B198F5022004E5879 /* iPacketTests.swift */; };
+		1F447358198FBD72004E5879 /* Pcap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447357198FBD72004E5879 /* Pcap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		1F447345198F5022004E5879 /* iPacketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iPacketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F44734A198F5022004E5879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F44734B198F5022004E5879 /* iPacketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPacketTests.swift; sourceTree = "<group>"; };
+		1F447357198FBD72004E5879 /* Pcap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pcap.swift; path = ../Pcap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		1F447332198F5022004E5879 /* iPacket */ = {
 			isa = PBXGroup;
 			children = (
+				1F447357198FBD72004E5879 /* Pcap.swift */,
 				1F447337198F5022004E5879 /* PcapDocument.swift */,
 				1F447339198F5022004E5879 /* PcapDocument.xib */,
 				1F44733C198F5022004E5879 /* Images.xcassets */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F447358198FBD72004E5879 /* Pcap.swift in Sources */,
 				1F447338198F5022004E5879 /* PcapDocument.swift in Sources */,
 				1F447336198F5022004E5879 /* main.swift in Sources */,
 			);
