@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F4418D919A4DE100026BBA1 /* Pcap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4418D819A4DE100026BBA1 /* Pcap.swift */; };
 		1F447336198F5022004E5879 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447335198F5022004E5879 /* main.swift */; };
 		1F447338198F5022004E5879 /* PcapDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447337198F5022004E5879 /* PcapDocument.swift */; };
 		1F44733B198F5022004E5879 /* PcapDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F447339198F5022004E5879 /* PcapDocument.xib */; };
 		1F44733D198F5022004E5879 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F44733C198F5022004E5879 /* Images.xcassets */; };
 		1F447340198F5022004E5879 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F44733E198F5022004E5879 /* MainMenu.xib */; };
 		1F44734C198F5022004E5879 /* iPacketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44734B198F5022004E5879 /* iPacketTests.swift */; };
-		1F447358198FBD72004E5879 /* Pcap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447357198FBD72004E5879 /* Pcap.swift */; };
 		1FEEFB00199B70830097078C /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEFAFF199B70830097078C /* Packet.swift */; };
 		1FEEFB02199DCF7C0097078C /* PDU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEFB01199DCF7C0097078C /* PDU.swift */; };
 		1FEEFB04199DD29A0097078C /* Loopback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEFB03199DD29A0097078C /* Loopback.swift */; };
@@ -30,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F4418D819A4DE100026BBA1 /* Pcap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pcap.swift; sourceTree = "<group>"; };
 		1F447330198F5022004E5879 /* iPacket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPacket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F447334198F5022004E5879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F447335198F5022004E5879 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		1F447345198F5022004E5879 /* iPacketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iPacketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F44734A198F5022004E5879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F44734B198F5022004E5879 /* iPacketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPacketTests.swift; sourceTree = "<group>"; };
-		1F447357198FBD72004E5879 /* Pcap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pcap.swift; path = ../Pcap.swift; sourceTree = "<group>"; };
 		1FEEFAFE1999E2330097078C /* iPacket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iPacket-Bridging-Header.h"; sourceTree = "<group>"; };
 		1FEEFAFF199B70830097078C /* Packet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		1FEEFB01199DCF7C0097078C /* PDU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDU.swift; sourceTree = "<group>"; };
@@ -86,15 +86,15 @@
 		1F447332198F5022004E5879 /* iPacket */ = {
 			isa = PBXGroup;
 			children = (
-				1FEEFAFF199B70830097078C /* Packet.swift */,
-				1FEEFB01199DCF7C0097078C /* PDU.swift */,
-				1FEEFB03199DD29A0097078C /* Loopback.swift */,
-				1F447357198FBD72004E5879 /* Pcap.swift */,
-				1F447337198F5022004E5879 /* PcapDocument.swift */,
 				1FEEFAFE1999E2330097078C /* iPacket-Bridging-Header.h */,
-				1F447339198F5022004E5879 /* PcapDocument.xib */,
+				1FEEFB03199DD29A0097078C /* Loopback.swift */,
+				1FEEFAFF199B70830097078C /* Packet.swift */,
+				1F4418D819A4DE100026BBA1 /* Pcap.swift */,
+				1F447337198F5022004E5879 /* PcapDocument.swift */,
+				1FEEFB01199DCF7C0097078C /* PDU.swift */,
 				1F44733C198F5022004E5879 /* Images.xcassets */,
 				1F44733E198F5022004E5879 /* MainMenu.xib */,
+				1F447339198F5022004E5879 /* PcapDocument.xib */,
 				1F447333198F5022004E5879 /* Supporting Files */,
 			);
 			path = iPacket;
@@ -226,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F447358198FBD72004E5879 /* Pcap.swift in Sources */,
+				1F4418D919A4DE100026BBA1 /* Pcap.swift in Sources */,
 				1FEEFB02199DCF7C0097078C /* PDU.swift in Sources */,
 				1FEEFB04199DD29A0097078C /* Loopback.swift in Sources */,
 				1F447338198F5022004E5879 /* PcapDocument.swift in Sources */,
