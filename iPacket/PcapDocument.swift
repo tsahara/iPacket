@@ -9,8 +9,8 @@
 import Cocoa
 
 class PcapDocument: NSDocument {
-                            
-    init() {
+
+    override init() {
         super.init()
         // Add your subclass-specific initialization here.
                                     
