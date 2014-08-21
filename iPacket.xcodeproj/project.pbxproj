@@ -31,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		1F4418D819A4DE100026BBA1 /* Pcap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pcap.swift; sourceTree = "<group>"; };
+		1F4418DB19A69E560026BBA1 /* memo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = memo.md; sourceTree = "<group>"; };
 		1F447330198F5022004E5879 /* iPacket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPacket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F447334198F5022004E5879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F447335198F5022004E5879 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -65,11 +66,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F4418DA19A69E560026BBA1 /* Doc */ = {
+			isa = PBXGroup;
+			children = (
+				1F4418DB19A69E560026BBA1 /* memo.md */,
+			);
+			path = Doc;
+			sourceTree = "<group>";
+		};
 		1F447327198F5022004E5879 = {
 			isa = PBXGroup;
 			children = (
 				1F447332198F5022004E5879 /* iPacket */,
 				1F447348198F5022004E5879 /* iPacketTests */,
+				1F4418DA19A69E560026BBA1 /* Doc */,
 				1F447331198F5022004E5879 /* Products */,
 			);
 			sourceTree = "<group>";
