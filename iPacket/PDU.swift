@@ -8,5 +8,16 @@
 
 import Foundation
 
-public class PDU {
+protocol PDU {
+    class func parse(bytes: NSData, hint: ParseHints) -> PDU
+}
+
+class ParseHints {
+    var endian: ByteOrder
+    var first_parser: (NSData, ParseHints) -> PDU
+    
+    init(endian: ByteOrder, first_parser: (NSData, ParseHints) -> PDU) {
+        self.endian = endian
+        self.first_parser = first_parser
+    }
 }
