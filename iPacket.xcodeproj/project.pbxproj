@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F0A167D19ACA432002EAD6A /* ParseHints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A167C19ACA432002EAD6A /* ParseHints.swift */; };
+		1F0A167F19ACA6F8002EAD6A /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A167E19ACA6F8002EAD6A /* Field.swift */; };
+		1F0A168119ADA9B4002EAD6A /* IPv6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A168019ADA9B4002EAD6A /* IPv6.swift */; };
+		1F0A168319ADAC67002EAD6A /* ICMP6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A168219ADAC67002EAD6A /* ICMP6.swift */; };
 		1F4418D919A4DE100026BBA1 /* Pcap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4418D819A4DE100026BBA1 /* Pcap.swift */; };
 		1F447336198F5022004E5879 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447335198F5022004E5879 /* main.swift */; };
 		1F447338198F5022004E5879 /* PcapDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F447337198F5022004E5879 /* PcapDocument.swift */; };
@@ -30,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F0A167C19ACA432002EAD6A /* ParseHints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHints.swift; sourceTree = "<group>"; };
+		1F0A167E19ACA6F8002EAD6A /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		1F0A168019ADA9B4002EAD6A /* IPv6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPv6.swift; sourceTree = "<group>"; };
+		1F0A168219ADAC67002EAD6A /* ICMP6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICMP6.swift; sourceTree = "<group>"; };
 		1F4418D819A4DE100026BBA1 /* Pcap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pcap.swift; sourceTree = "<group>"; };
 		1F4418DB19A69E560026BBA1 /* memo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = memo.md; sourceTree = "<group>"; };
 		1F447330198F5022004E5879 /* iPacket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPacket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,8 +105,12 @@
 			isa = PBXGroup;
 			children = (
 				1FEEFAFE1999E2330097078C /* iPacket-Bridging-Header.h */,
+				1F0A167E19ACA6F8002EAD6A /* Field.swift */,
+				1F0A168219ADAC67002EAD6A /* ICMP6.swift */,
+				1F0A168019ADA9B4002EAD6A /* IPv6.swift */,
 				1FEEFB03199DD29A0097078C /* Loopback.swift */,
 				1FEEFAFF199B70830097078C /* Packet.swift */,
+				1F0A167C19ACA432002EAD6A /* ParseHints.swift */,
 				1F4418D819A4DE100026BBA1 /* Pcap.swift */,
 				1F447337198F5022004E5879 /* PcapDocument.swift */,
 				1FEEFB01199DCF7C0097078C /* PDU.swift */,
@@ -237,11 +249,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F4418D919A4DE100026BBA1 /* Pcap.swift in Sources */,
+				1F0A168319ADAC67002EAD6A /* ICMP6.swift in Sources */,
 				1FEEFB02199DCF7C0097078C /* PDU.swift in Sources */,
+				1F0A167F19ACA6F8002EAD6A /* Field.swift in Sources */,
 				1FEEFB04199DD29A0097078C /* Loopback.swift in Sources */,
+				1F0A168119ADA9B4002EAD6A /* IPv6.swift in Sources */,
 				1F447338198F5022004E5879 /* PcapDocument.swift in Sources */,
 				1F447336198F5022004E5879 /* main.swift in Sources */,
 				1FEEFB00199B70830097078C /* Packet.swift in Sources */,
+				1F0A167D19ACA432002EAD6A /* ParseHints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

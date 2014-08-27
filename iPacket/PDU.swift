@@ -8,16 +8,21 @@
 
 import Foundation
 
-protocol PDU {
-    class func parse(bytes: NSData, hint: ParseHints) -> PDU
+protocol Header {
+    class func parser(bytes: NSData, hint: ParseHints) -> Header
+    //var offset: Int { get }
+    var length: Int { get }
+    var fields: [Field] { get }
+    var next_parser: ((bytes: NSData, hint: ParseHints) -> Header)? { get }
 }
 
-class ParseHints {
-    var endian: ByteOrder
-    var first_parser: (NSData, ParseHints) -> PDU
+class HeaderImpl: Header {
+    var length: Int = 1
+    var fields: [Field] = []
+    var next_parser: ((bytes: NSData, hint: ParseHints) -> Header)? = nil
     
-    init(endian: ByteOrder, first_parser: (NSData, ParseHints) -> PDU) {
-        self.endian = endian
-        self.first_parser = first_parser
+    class func parser(bytes: NSData, hint: ParseHints) -> Header {
+        /* dummy */
+        return HeaderImpl()
     }
 }

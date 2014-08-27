@@ -74,7 +74,7 @@ class Pcap {
         // version major/minor
         // snaplen
 
-        var parser: (NSData, ParseHints) -> PDU
+        var parser: (NSData, ParseHints) -> Header
         switch Int32(header.linktype) {
         case DLT_NULL:
             parser = LoopbackProtocol.parse
@@ -98,8 +98,8 @@ class Pcap {
                 // XXX: error!
                 break
             }
-            ptr += pkt.captured_length
-            len -= pkt.captured_length
+            ptr += pkt.captured_length + 16
+            len -= pkt.captured_length - 16
         }
         
         return pcap;

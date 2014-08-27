@@ -42,13 +42,16 @@ class Packet {
     var captured_length: Int
     var packet_length: Int
 
-    var pdu_chain: [PDU]
+    var headers: [Header]
 
     init(pointer: UnsafePointer<()>, length: Int, hint: ParseHints) {
         if length < 16 {
             // XXX: length error
         }
         
+        // XXX: header should be parsed by caller(Pcap)...?
+        //      because endian of packet header is dependent on Pcap file
+       
         let hdr = NSData(bytes: pointer, length: 16)
 
         let tv_sec = hdr.u32le(0)
@@ -62,11 +65,22 @@ class Packet {
 
         self.data = NSData(bytes: pointer, length: length)
 
-        pdu_chain = []
-        
-        var n = 0
-        while n < packet_length {
-            n += packet_length
+        headers = []
+
+        var ptr  = 0
+        var last = captured_length
+        var parser = hint.first_parser
+        while ptr < last {
+            let pdu = parser(data.subdataWithRange(NSRange(ptr...last)), hint)
+            if pdu.length == 0 {
+                /* XXX */
+            }
+            if let p = pdu.next_parser {
+                parser = p
+            } else {
+                break
+            }
+            ptr += pdu.length
         }
     }
 }

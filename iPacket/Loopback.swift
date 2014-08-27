@@ -8,21 +8,23 @@
 
 import Foundation
 
-class LoopbackProtocol: PDU {
-    let af: Int
-
-    init(af: Int) {
-        self.af = af
+final class LoopbackProtocol: HeaderImpl {
+    init(length: Int) {
+        super.init()
+        self.length = length
     }
-
-    class func parse(data: NSData, hint: ParseHints) -> PDU {
+    
+    class func parse(bytes: NSData, hint: ParseHints) -> Header {
         var af: Int
+        let h = LoopbackProtocol(length: 4)
+
         switch hint.endian {
         case .BigEndian:
-            af = Int(data.u32(0))
+            af = Int(bytes.u32(0))
         case .LittleEndian:
-            af = Int(data.u32le(0))
+            af = Int(bytes.u32le(0))
         }
-        return LoopbackProtocol(af: af)
+        h.next_parser = IPv6.parse
+        return h
     }
 }
