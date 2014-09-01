@@ -44,7 +44,7 @@ class Packet {
 
     var headers: [Header]
 
-    init(pointer: UnsafePointer<()>, length: Int, hint: ParseHints) {
+    init(pointer: UnsafePointer<Void>, length: Int, hint: ParseHints) {
         if length < 16 {
             // XXX: length error
         }
