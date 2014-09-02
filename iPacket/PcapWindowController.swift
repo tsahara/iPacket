@@ -24,31 +24,34 @@ class PcapWindowController: NSWindowController, NSTableViewDataSource, NSTableVi
     
     // NSTableViewDataSource
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int {
-        println(self.document)
-        return 1
+        let document = self.document as PcapDocument
+        if document.pcap != nil {
+            return document.pcap!.packets.count
+        } else {
+            return 0
+        }
     }
-    
-//    func tableView(tableView: NSTableView!,
-//        viewForTableColumn tableColumn: NSTableColumn!,
-//        row: Int) -> NSView! {
-//            //let v: AnyObject! = tableView.makeViewWithIdentifier("fuga", owner: self)
-//            let t = NSTextField()
-//            t.stringValue = "abc"
-//            t.textColor = NSColor.blueColor()
-//            return t
-//    }
 
     func tableView(tableView: NSTableView!,
         viewForTableColumn tableColumn: NSTableColumn!,
         row: Int) -> NSView! {
+            let document = self.document as PcapDocument
+            let pkt = document.pcap!.packets[row]
+            
             if let result = tableView.makeViewWithIdentifier("PcapView", owner:self) as? NSTextField {
-                println("result is \(result)")
                 result.stringValue = "abc"
                 return result
             } else {
                 let t = NSTextField()
+                t.editable = false
+                t.selectable = false
+                t.drawsBackground = false
+                t.bezeled = false
                 t.stringValue = "abc"
-                t.textColor = NSColor.blueColor()
+//                t.textColor = NSColor.blueColor()
+                if tableColumn.identifier == "proto" {
+                    t.stringValue = pkt.proto.name
+                }
                 return t
             }
     }

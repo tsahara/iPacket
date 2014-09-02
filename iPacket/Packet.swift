@@ -83,4 +83,14 @@ class Packet {
             ptr += pdu.length
         }
     }
+
+    var proto: Header {
+    get {
+        if self.headers.count == 0 {
+            return DummyHeader()
+        } else {
+            return self.headers[self.headers.count - 1]
+        }
+    }
+    }
 }

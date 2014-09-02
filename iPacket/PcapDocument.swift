@@ -9,6 +9,8 @@
 import Cocoa
 
 class PcapDocument: NSDocument {
+    var pcap: Pcap? = nil
+
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
@@ -17,7 +19,7 @@ class PcapDocument: NSDocument {
 
     override func windowControllerDidLoadNib(aController: NSWindowController) {
         super.windowControllerDidLoadNib(aController)
-                                    
+
         // Add any code here that needs to be executed once the windowController has loaded the document's window.
                                     
     }
@@ -48,13 +50,12 @@ class PcapDocument: NSDocument {
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
 
-        if let pcap = Pcap.parse(data!, error: outError) {
+        pcap = Pcap.parse(data!, error: outError)
+        if pcap != nil {
             return true
         } else {
             return false
         }
     }
-
-
 }
 

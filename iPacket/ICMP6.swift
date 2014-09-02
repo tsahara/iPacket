@@ -9,6 +9,8 @@
 import Foundation
 
 class ICMP6: HeaderImpl {
+    override var name: String { return "ICMP6" }
+
     required init(length: Int) {
         super.init()
         self.length = length
