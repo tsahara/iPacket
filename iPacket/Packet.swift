@@ -52,18 +52,18 @@ class Packet {
         // XXX: header should be parsed by caller(Pcap)...?
         //      because endian of packet header is dependent on Pcap file
        
-        let hdr = NSData(bytes: pointer, length: 16)
+        let packet_header = NSData(bytes: pointer, length: 16)
 
-        let tv_sec = hdr.u32le(0)
-        let tv_usec = hdr.u32le(4)
-        let sec = Double(tv_sec) + 1.0e-8 * Double(tv_usec)
+        let tv_sec  = packet_header.u32le(0)
+        let tv_usec = packet_header.u32le(4)
+        let sec = Double(tv_sec) + 1.0e-6 * Double(tv_usec)
         timestamp = NSDate(timeIntervalSince1970: sec)
-        captured_length = Int(hdr.u32le(8))
-        packet_length = Int(hdr.u32le(12))
+        captured_length = Int(packet_header.u32le(8))
+        packet_length   = Int(packet_header.u32le(12))
         
         // captured_length <= length + ? ...?
 
-        self.data = NSData(bytes: pointer, length: length)
+        self.data = NSData(bytes: pointer + 16, length: length)
 
         headers = []
 
@@ -72,9 +72,12 @@ class Packet {
         var parser = hint.first_parser
         while ptr < last {
             let pdu = parser(data.subdataWithRange(NSRange(ptr...last)), hint)
+println("length=\(length), ptr=\(ptr), last=\(last), pdu.length=\(pdu.length)")
             if pdu.length == 0 {
                 /* XXX */
             }
+            headers.append(pdu)
+
             if let p = pdu.next_parser {
                 parser = p
             } else {

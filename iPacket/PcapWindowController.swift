@@ -38,21 +38,33 @@ class PcapWindowController: NSWindowController, NSTableViewDataSource, NSTableVi
             let document = self.document as PcapDocument
             let pkt = document.pcap!.packets[row]
             
-            if let result = tableView.makeViewWithIdentifier("PcapView", owner:self) as? NSTextField {
-                result.stringValue = "abc"
-                return result
+            var text: NSTextField
+            if let t = tableView.makeViewWithIdentifier("PcapView", owner:self) as? NSTextField {
+                text = t
             } else {
-                let t = NSTextField()
-                t.editable = false
-                t.selectable = false
-                t.drawsBackground = false
-                t.bezeled = false
-                t.stringValue = "abc"
-//                t.textColor = NSColor.blueColor()
-                if tableColumn.identifier == "proto" {
-                    t.stringValue = pkt.proto.name
-                }
-                return t
+                text = NSTextField()
             }
+            
+            text.editable = false
+            text.selectable = false
+            text.drawsBackground = false
+            text.bezeled = false
+
+//          t.textColor = NSColor.blueColor()
+            switch tableColumn.identifier {
+            case "time":
+                let df = NSDateFormatter()
+                df.dateFormat = "HH:mm:ss"
+
+                let nf = NSNumberFormatter()
+                nf.format = ".000"
+
+                text.stringValue = df.stringFromDate(pkt.timestamp) + nf.stringFromNumber(pkt.timestamp.timeIntervalSince1970 % 1)
+            case "proto":
+                text.stringValue = pkt.proto.name
+            default:
+                text.stringValue = "???"
+            }
+            return text
     }
 }

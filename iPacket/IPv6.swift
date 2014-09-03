@@ -9,17 +9,19 @@
 import Foundation
 
 class IPv6: HeaderImpl {
+    override var name: String { return "IPv6" }
+
     required init(length: Int) {
         super.init()
         self.length = length
     }
     
-    class func parse(bytes: NSData, hint: ParseHints) -> Header {
+    override class func parse(bytes: NSData, hint: ParseHints) -> Header {
         let h = self(length: 40)
 
         switch bytes.u8(6) {
         case 58:
-            h.next_parser = ICMP6.parser
+            h.next_parser = ICMP6.parse
         default:
             h.next_parser = nil
         }

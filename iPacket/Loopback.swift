@@ -9,12 +9,14 @@
 import Foundation
 
 final class LoopbackProtocol: HeaderImpl {
+    override var name: String { return "Loopback" }
+
     init(length: Int) {
         super.init()
         self.length = length
     }
     
-    class func parse(bytes: NSData, hint: ParseHints) -> Header {
+    override class func parse(bytes: NSData, hint: ParseHints) -> Header {
         var af: Int
         let h = LoopbackProtocol(length: 4)
 

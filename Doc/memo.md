@@ -2,10 +2,9 @@
 
  - NSDocument にくっついてくる NSData をパーズする
  - PDU.parse の異常系はどうハンドルする?
-
+ - milliseconds 単位の時刻の表示
 
 ## 未整理のメモ
- - 各プロトコルのパーザはバイト列を受け取る
  - パーザが死ぬのを避けるのは...? UnsafePointer は使えない。
 
 ## 概要
@@ -76,7 +75,7 @@ hexadump と、それをパーズした結果が見える。
    - パケットひとつ = いろんなプロトコルの積み重ね
      - Ethernet + IPv6 + TCP + ...
 
-### pcap ファイルの構成
+### pcap ファイルの構造
 
  - ファイルは `struct pcap_file_header` からはじまる。バイトオーダは big/little の
    どちらもあり、ファイル先頭 4バイトの magic を読めば判別できる。
@@ -95,6 +94,14 @@ hexadump と、それをパーズした結果が見える。
 
 ## 実装
 
+### コマンドラインツール
+custom framework を作るのが正攻法のようだ。ただし Supporting Files の main.swift で
+NSApplicationMain を呼ぶ前に分岐することもできる。この場合はアプリケーションを実行させる
+ためのシンボリックリンクを /usr/sbin かどこかに置くことになるだろう。
+
+引数に pcap ファイルをひとつ受け取り、その中のパケットを一行ずつ表示する。
+
+
 ## 類似品調査
  - Apple のライブラリの "Getting a Packet Trace"
 
@@ -104,3 +111,4 @@ hexadump と、それをパーズした結果が見える。
 ## そのうちやること
  - pcap をライブでキャプチャできる
  - 4GB 超えの pcap ファイルを読める
+ - コマンドラインツール

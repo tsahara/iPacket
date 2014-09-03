@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Header {
-    class func parser(bytes: NSData, hint: ParseHints) -> Header
+    class func parse(bytes: NSData, hint: ParseHints) -> Header
     //var offset: Int { get }
     var length: Int { get }
     var fields: [Field] { get }
@@ -23,7 +23,7 @@ class HeaderImpl: Header {
     var next_parser: ((bytes: NSData, hint: ParseHints) -> Header)? = nil
     var name: String { return "(XXX)" }
     
-    class func parser(bytes: NSData, hint: ParseHints) -> Header {
+    class func parse(bytes: NSData, hint: ParseHints) -> Header {
         /* dummy */
         return HeaderImpl()
     }
