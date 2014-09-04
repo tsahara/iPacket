@@ -43,6 +43,8 @@ class Packet {
     var packet_length: Int
 
     var headers: [Header]
+    var src: String?
+    var dst: String?
 
     init(pointer: UnsafePointer<Void>, length: Int, hint: ParseHints) {
         if length < 16 {
@@ -72,7 +74,7 @@ class Packet {
         var parser = hint.first_parser
         while ptr < last {
             let pdu = parser(data.subdataWithRange(NSRange(ptr...last)), hint)
-println("length=\(length), ptr=\(ptr), last=\(last), pdu.length=\(pdu.length)")
+//println("length=\(length), ptr=\(ptr), last=\(last), pdu.length=\(pdu.length)")
             if pdu.length == 0 {
                 /* XXX */
             }
@@ -85,12 +87,15 @@ println("length=\(length), ptr=\(ptr), last=\(last), pdu.length=\(pdu.length)")
             }
             ptr += pdu.length
         }
+        
+        self.src = hint.src
+        self.dst = hint.dst
     }
 
     var proto: Header {
     get {
         if self.headers.count == 0 {
-            return DummyHeader()
+            return DummyHeader(type: .Unknown)
         } else {
             return self.headers[self.headers.count - 1]
         }

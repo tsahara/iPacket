@@ -15,19 +15,35 @@ protocol Header {
     var fields: [Field] { get }
     var next_parser: ((bytes: NSData, hint: ParseHints) -> Header)? { get }
     var name: String { get }
+    var type: HeaderType { get }
 }
 
 class HeaderImpl: Header {
+    var type: HeaderType
     var length: Int = 1
     var fields: [Field] = []
     var next_parser: ((bytes: NSData, hint: ParseHints) -> Header)? = nil
-    var name: String { return "(XXX)" }
+
+    var name: String {
+        return type.toRaw()
+    }
+
+    init(type: HeaderType) {
+        self.type = type
+    }
     
     class func parse(bytes: NSData, hint: ParseHints) -> Header {
         /* dummy */
-        return HeaderImpl()
+        return HeaderImpl(type: .Unknown)
     }
 }
 
 class DummyHeader: HeaderImpl {
+}
+
+enum HeaderType: String {
+    case ICMP6 = "icmp6"
+    case IPv6 = "ipv6"
+    case Loopback = "loopback"
+    case Unknown = "unknown"
 }

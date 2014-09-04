@@ -12,7 +12,7 @@ final class LoopbackProtocol: HeaderImpl {
     override var name: String { return "Loopback" }
 
     init(length: Int) {
-        super.init()
+        super.init(type: .Loopback)
         self.length = length
     }
     
@@ -26,7 +26,15 @@ final class LoopbackProtocol: HeaderImpl {
         case .LittleEndian:
             af = Int(bytes.u32le(0))
         }
-        h.next_parser = IPv6.parse
+        
+        switch af {
+        case 30:
+            h.next_parser = IPv6.parse
+        default:
+            h.next_parser = nil
+            hint.src = ""
+            hint.dst = ""
+        }
         return h
     }
 }

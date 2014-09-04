@@ -60,6 +60,10 @@ class PcapWindowController: NSWindowController, NSTableViewDataSource, NSTableVi
                 nf.format = ".000"
 
                 text.stringValue = df.stringFromDate(pkt.timestamp) + nf.stringFromNumber(pkt.timestamp.timeIntervalSince1970 % 1)
+            case "source":
+                text.stringValue = pkt.src
+            case "destination":
+                text.stringValue = pkt.dst
             case "proto":
                 text.stringValue = pkt.proto.name
             default:

@@ -1,8 +1,9 @@
 ## TODO
 
- - NSDocument にくっついてくる NSData をパーズする
+ - src/dst の表示
+ - info の表示
+ - 詳細表示 UI の設計と実装
  - PDU.parse の異常系はどうハンドルする?
- - milliseconds 単位の時刻の表示
 
 ## 未整理のメモ
  - パーザが死ぬのを避けるのは...? UnsafePointer は使えない。
@@ -86,7 +87,8 @@ hexadump と、それをパーズした結果が見える。
  - パケットはまず `struct pcap_pkthdr` からはじまり、その後ヘッダの caplen の分だけ
    バイト列が続く
    - caplen は `struct pcap_pkthdr` のサイズを含まない
-
+ - linktype = DLT_NULL のヘッダは int32_t af; のみ。しかし AF_XXX マクロはプラット
+   ホーム依存ではないか...?
 
 ## 画面設計
  - 開始直後は、1. インタフェースの選択、2. pcap ファイルの選択 があって、テキストの hexadump を入れるワクを開くボタンがある...?
@@ -112,3 +114,4 @@ NSApplicationMain を呼ぶ前に分岐することもできる。この場合�
  - pcap をライブでキャプチャできる
  - 4GB 超えの pcap ファイルを読める
  - コマンドラインツール
+ - hexadump から pcap を作る

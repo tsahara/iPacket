@@ -9,8 +9,11 @@
 import Foundation
 
 class ParseHints {
-    var endian: ByteOrder
     var first_parser: (NSData, ParseHints) -> Header
+    var endian: ByteOrder
+    var src: String? = nil
+    var dst: String? = nil
+    var ip:  Header? = nil   // IPv4 or IPv6 Header
     
     init(endian: ByteOrder, first_parser: (NSData, ParseHints) -> Header) {
         self.endian = endian
