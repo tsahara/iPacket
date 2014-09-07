@@ -8,6 +8,15 @@
 
 import Foundation
 
+// version:4
+// traffic-class:8
+// Flow Label: 20
+// Payload Length: 16
+// Next Header: 8
+// Hop Limit: 8
+// Source Address: 128
+// Destination Address: 128
+
 class IPv6: HeaderImpl {
     var nexthdr: Int = -1
     var src: IPv6Address?
