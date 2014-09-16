@@ -9,7 +9,10 @@
 #ifndef iPacket_Header_h
 #define iPacket_Header_h
 
+
 #include "pcap/bpf.h"
 #include "pcap/pcap.h"
+
+int bpf_setup(int fd, const char *ifname);
 
 #endif

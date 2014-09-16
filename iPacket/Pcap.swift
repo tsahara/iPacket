@@ -12,26 +12,6 @@ enum ByteOrder {
     case BigEndian, LittleEndian
 }
 
-//extension NSData {
-//    func getUInt16(offset: Int) -> UInt16 {
-//        if offset + 2 < self.length {
-//            let p = UnsafePointer<UInt8>(self.bytes) + offset
-//            return UInt16(p[0]) << 8 + UInt16(p[1])
-//        } else {
-//            return 0
-//        }
-//    }
-//
-//    func getUInt32(offset: Int) -> UInt32 {
-//        if offset + 4 < self.length {
-//            let p = UnsafePointer<UInt8>(self.bytes) + offset
-//            return UInt32(p[0]) << 24 + UInt32(p[1]) << 16 + UInt32(p[2]) << 8 + UInt32(p[3])
-//        } else {
-//            return 0
-//        }
-//    }
-//}
-
 let PCAPMAGIC: UInt32 = 0xa1b2c3d4
 
 class Pcap {

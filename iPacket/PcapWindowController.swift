@@ -11,14 +11,17 @@ import Cocoa
 
 class PcapWindowController: NSWindowController, NSTableViewDataSource, NSTableViewDelegate {
     override init()  {
+        println("win init")
         super.init()
     }
     
     override init(window: NSWindow?) {
         super.init(window: window)
+        println("win init(window): document=\(document)")
     }
     
     required init(coder: NSCoder!) {
+        println("win init(coder)")
         super.init(coder: coder)
     }
     
@@ -32,9 +35,7 @@ class PcapWindowController: NSWindowController, NSTableViewDataSource, NSTableVi
         }
     }
 
-    func tableView(tableView: NSTableView!,
-        viewForTableColumn tableColumn: NSTableColumn!,
-        row: Int) -> NSView! {
+    func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
             let document = self.document as PcapDocument
             let pkt = document.pcap!.packets[row]
             

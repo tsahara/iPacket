@@ -14,9 +14,21 @@ class PcapDocument: NSDocument {
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
-                                    
+
+        // Document is created by "File > Open"
+        println("doc init")
     }
 
+    init(type typeName: String!, error outError: NSErrorPointer) {
+        super.init()
+        
+        // Document is created by "File > New"
+        println("doc init type")
+        BPF()
+        
+        //self.pcap =
+    }
+    
     override func windowControllerDidLoadNib(aController: NSWindowController) {
         super.windowControllerDidLoadNib(aController)
 
@@ -49,7 +61,6 @@ class PcapDocument: NSDocument {
         // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-
         pcap = Pcap.parse(data!, error: outError)
         if pcap != nil {
             return true

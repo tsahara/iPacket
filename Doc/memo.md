@@ -1,5 +1,6 @@
 ## TODO
 
+ - /dev/bpf のタップ
  - 詳細表示 UI の設計と実装
  - info の表示
  - PDU.parse の異常系はどうハンドルする?
@@ -101,6 +102,10 @@ NSApplicationMain を呼ぶ前に分岐することもできる。この場合�
 ためのシンボリックリンクを /usr/sbin かどこかに置くことになるだろう。
 
 引数に pcap ファイルをひとつ受け取り、その中のパケットを一行ずつ表示する。
+
+### bpf
+bpf を使うのは New Document.  pcap ファイルのオープンと New Document の違いは?
+NSDocument のサブクラスの init の呼ばれ方が違う。
 
 
 ## 類似品調査
