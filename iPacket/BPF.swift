@@ -9,21 +9,17 @@
 import Foundation
 
 class BPF {
+    var fh: NSFileHandle
+    
     init() {
-        let fh = NSFileHandle(forReadingAtPath: "/dev/bpf3")
+        fh = NSFileHandle(forReadingAtPath: "/dev/bpf3")
         let bpf = fh.fileDescriptor
         let r = bpf_setup(bpf, "en0")
         println("bpf_setup =>", r)
 
-        //println(fh.availableData)
-        
-
-//        fh.readabilityHandler = {
-//            f in println("reader")
-//            var buf = [UInt8](count: 2000, repeatedValue: 0)
-//            println(read(bpf, &buf, 2000))
-//            println(buf)
-//        }
-//        fh.readabilityHandler = { h in println("read=>\(h.availableData)") }
+        fh.readabilityHandler = { (fh) in
+            var buf = [UInt8](count: 2000, repeatedValue: 0)
+            println(read(fh.fileDescriptor, &buf, 2000))
+        }
     }
 }

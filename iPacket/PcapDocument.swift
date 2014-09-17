@@ -10,6 +10,7 @@ import Cocoa
 
 class PcapDocument: NSDocument {
     var pcap: Pcap? = nil
+    var bpf: BPF? = nil
 
     override init() {
         super.init()
@@ -24,7 +25,7 @@ class PcapDocument: NSDocument {
         
         // Document is created by "File > New"
         println("doc init type")
-        BPF()
+        self.bpf = BPF()
         
         //self.pcap =
     }

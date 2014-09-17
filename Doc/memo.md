@@ -107,6 +107,9 @@ NSApplicationMain を呼ぶ前に分岐することもできる。この場合�
 bpf を使うのは New Document.  pcap ファイルのオープンと New Document の違いは?
 NSDocument のサブクラスの init の呼ばれ方が違う。
 
+bpf は NSInputStream, NSFileHandle どっちで扱う?
+
+
 
 ## 類似品調査
  - Apple のライブラリの "Getting a Packet Trace"
