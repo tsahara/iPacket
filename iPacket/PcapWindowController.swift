@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tomoyuki Sahara. All rights reserved.
 //
 
-//import Foundation
+import Foundation
 import Cocoa
 
 class PcapWindowController: NSWindowController, NSTableViewDataSource, NSTableViewDelegate {
@@ -36,40 +36,58 @@ class PcapWindowController: NSWindowController, NSTableViewDataSource, NSTableVi
     }
 
     func tableView(tableView: NSTableView!, viewForTableColumn tableColumn: NSTableColumn!, row: Int) -> NSView! {
-            let document = self.document as PcapDocument
-            let pkt = document.pcap!.packets[row]
-            
-            var text: NSTextField
-            if let t = tableView.makeViewWithIdentifier("PcapView", owner:self) as? NSTextField {
-                text = t
-            } else {
-                text = NSTextField()
-            }
-            
-            text.editable = false
-            text.selectable = false
-            text.drawsBackground = false
-            text.bezeled = false
+        let document = self.document as PcapDocument
+        let pkt = document.pcap!.packets[row]
 
-//          t.textColor = NSColor.blueColor()
-            switch tableColumn.identifier {
-            case "time":
-                let df = NSDateFormatter()
-                df.dateFormat = "HH:mm:ss"
+        var text: NSTextField
+        if let t = tableView.makeViewWithIdentifier("PcapView", owner:self) as? NSTextField {
+            text = t
+        } else {
+            text = NSTextField()
+        }
+        
+        text.editable = false
+        text.selectable = false
+        text.drawsBackground = false
+        text.bezeled = false
 
-                let nf = NSNumberFormatter()
-                nf.format = ".000"
+//      t.textColor = NSColor.blueColor()
+        switch tableColumn.identifier {
+        case "time":
+            let df = NSDateFormatter()
+            df.dateFormat = "HH:mm:ss"
 
-                text.stringValue = df.stringFromDate(pkt.timestamp) + nf.stringFromNumber(pkt.timestamp.timeIntervalSince1970 % 1)
-            case "source":
+            let nf = NSNumberFormatter()
+            nf.format = ".000"
+
+            text.stringValue = df.stringFromDate(pkt.timestamp) + nf.stringFromNumber(pkt.timestamp.timeIntervalSince1970 % 1)!
+        case "source":
+            if (pkt.src != nil) {
                 text.stringValue = pkt.src
-            case "destination":
-                text.stringValue = pkt.dst
-            case "proto":
-                text.stringValue = pkt.proto.name
-            default:
-                text.stringValue = "???"
+            } else {
+                text.stringValue = "(src?)"
             }
-            return text
+        case "destination":
+            if (pkt.dst != nil) {
+                text.stringValue = pkt.dst
+            } else {
+                text.stringValue = "(dst?)"
+            }
+        case "proto":
+            text.stringValue = pkt.proto.name
+        default:
+            text.stringValue = "???"
+        }
+        return text
     }
+    
+    @IBOutlet weak var tableView: NSTableView!
+    
+    func add_packet(pkt: Packet) {
+        if (self.tableView != nil) {
+            let document = self.document as PcapDocument
+            tableView.insertRowsAtIndexes(NSIndexSet(index: document.pcap!.packets.count), withAnimation: .EffectNone)
+        }
+    }
+
 }

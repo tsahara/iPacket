@@ -11,6 +11,7 @@
 		1F0A167F19ACA6F8002EAD6A /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A167E19ACA6F8002EAD6A /* Field.swift */; };
 		1F0A168119ADA9B4002EAD6A /* IPv6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A168019ADA9B4002EAD6A /* IPv6.swift */; };
 		1F0A168319ADAC67002EAD6A /* ICMP6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A168219ADAC67002EAD6A /* ICMP6.swift */; };
+		1F15C7D919CFE7EA009CCD81 /* Ethernet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F15C7D819CFE7EA009CCD81 /* Ethernet.swift */; };
 		1F3876F919C7FEBC007A5FA7 /* BPF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3876F819C7FEBC007A5FA7 /* BPF.swift */; };
 		1F3876FB19C800E0007A5FA7 /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3876FA19C800E0007A5FA7 /* util.m */; };
 		1F4418D919A4DE100026BBA1 /* Pcap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4418D819A4DE100026BBA1 /* Pcap.swift */; };
@@ -23,6 +24,7 @@
 		1F9B35FE19B4923D0017B3EC /* PcapWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B35FD19B4923D0017B3EC /* PcapWindowController.swift */; };
 		1FBADDE119B769AB00FDD119 /* IPv6Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBADDE019B769AB00FDD119 /* IPv6Address.swift */; };
 		1FBADDE719BC678800FDD119 /* protocols.md in Sources */ = {isa = PBXBuildFile; fileRef = 1FBADDE619BC678800FDD119 /* protocols.md */; };
+		1FCA960D19CAA7E600085DFA /* NSDataExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCA960C19CAA7E600085DFA /* NSDataExt.swift */; };
 		1FEEFB00199B70830097078C /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEFAFF199B70830097078C /* Packet.swift */; };
 		1FEEFB02199DCF7C0097078C /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEFB01199DCF7C0097078C /* Header.swift */; };
 		1FEEFB04199DD29A0097078C /* Loopback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEEFB03199DD29A0097078C /* Loopback.swift */; };
@@ -43,6 +45,7 @@
 		1F0A167E19ACA6F8002EAD6A /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		1F0A168019ADA9B4002EAD6A /* IPv6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPv6.swift; sourceTree = "<group>"; };
 		1F0A168219ADAC67002EAD6A /* ICMP6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICMP6.swift; sourceTree = "<group>"; };
+		1F15C7D819CFE7EA009CCD81 /* Ethernet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ethernet.swift; sourceTree = "<group>"; };
 		1F3876F819C7FEBC007A5FA7 /* BPF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BPF.swift; sourceTree = "<group>"; };
 		1F3876FA19C800E0007A5FA7 /* util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = util.m; sourceTree = "<group>"; };
 		1F4418D819A4DE100026BBA1 /* Pcap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pcap.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		1F9B35FD19B4923D0017B3EC /* PcapWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PcapWindowController.swift; sourceTree = "<group>"; };
 		1FBADDE019B769AB00FDD119 /* IPv6Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPv6Address.swift; sourceTree = "<group>"; };
 		1FBADDE619BC678800FDD119 /* protocols.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = protocols.md; sourceTree = "<group>"; };
+		1FCA960C19CAA7E600085DFA /* NSDataExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataExt.swift; sourceTree = "<group>"; };
 		1FEEFAFE1999E2330097078C /* iPacket-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iPacket-Bridging-Header.h"; sourceTree = "<group>"; };
 		1FEEFAFF199B70830097078C /* Packet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		1FEEFB01199DCF7C0097078C /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				1FEEFAFE1999E2330097078C /* iPacket-Bridging-Header.h */,
 				1F3876FA19C800E0007A5FA7 /* util.m */,
 				1F3876F819C7FEBC007A5FA7 /* BPF.swift */,
+				1FCA960C19CAA7E600085DFA /* NSDataExt.swift */,
 				1FEEFAFF199B70830097078C /* Packet.swift */,
 				1F4418D819A4DE100026BBA1 /* Pcap.swift */,
 				1F447337198F5022004E5879 /* PcapDocument.swift */,
@@ -160,11 +165,12 @@
 		1F9B35FF19B5E9480017B3EC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				1F15C7D819CFE7EA009CCD81 /* Ethernet.swift */,
 				1F0A167E19ACA6F8002EAD6A /* Field.swift */,
-				1FBADDE019B769AB00FDD119 /* IPv6Address.swift */,
 				1FEEFB01199DCF7C0097078C /* Header.swift */,
 				1F0A168219ADAC67002EAD6A /* ICMP6.swift */,
 				1F0A168019ADA9B4002EAD6A /* IPv6.swift */,
+				1FBADDE019B769AB00FDD119 /* IPv6Address.swift */,
 				1FEEFB03199DD29A0097078C /* Loopback.swift */,
 				1F0A167C19ACA432002EAD6A /* ParseHints.swift */,
 			);
@@ -277,6 +283,7 @@
 				1FBADDE719BC678800FDD119 /* protocols.md in Sources */,
 				1FEEFB02199DCF7C0097078C /* Header.swift in Sources */,
 				1FBADDE119B769AB00FDD119 /* IPv6Address.swift in Sources */,
+				1FCA960D19CAA7E600085DFA /* NSDataExt.swift in Sources */,
 				1F0A167F19ACA6F8002EAD6A /* Field.swift in Sources */,
 				1FEEFB04199DD29A0097078C /* Loopback.swift in Sources */,
 				1F0A168119ADA9B4002EAD6A /* IPv6.swift in Sources */,
@@ -284,6 +291,7 @@
 				1F3876FB19C800E0007A5FA7 /* util.m in Sources */,
 				1F447336198F5022004E5879 /* main.swift in Sources */,
 				1FEEFB00199B70830097078C /* Packet.swift in Sources */,
+				1F15C7D919CFE7EA009CCD81 /* Ethernet.swift in Sources */,
 				1F9B35FE19B4923D0017B3EC /* PcapWindowController.swift in Sources */,
 				1F0A167D19ACA432002EAD6A /* ParseHints.swift in Sources */,
 			);

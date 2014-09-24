@@ -89,6 +89,7 @@ hexadump と、それをパーズした結果が見える。
    - caplen は `struct pcap_pkthdr` のサイズを含まない
  - linktype = DLT_NULL のヘッダは int32_t af; のみ。しかし AF_XXX マクロはプラット
    ホーム依存ではないか...?
+ - BPF から吸い出せるバイト列に file header を付けたものが pcap ファイルになる
 
 ## 画面設計
  - 開始直後は、1. インタフェースの選択、2. pcap ファイルの選択 があって、テキストの hexadump を入れるワクを開くボタンがある...?
@@ -107,8 +108,18 @@ NSApplicationMain を呼ぶ前に分岐することもできる。この場合�
 bpf を使うのは New Document.  pcap ファイルのオープンと New Document の違いは?
 NSDocument のサブクラスの init の呼ばれ方が違う。
 
-bpf は NSInputStream, NSFileHandle どっちで扱う?
+bpf は NSFileHandle で扱う。
+table の row を増やすには?
+NSTableView.insertRowsAtIndexes
+NSDocument -> NSWindowController -> NSTableView か。
 
+bpf から読んだバイト列には bpf のパケットヘッダが付いている。
+これは pcap のヘッダとはちょっと違うので要注意。
+
+
+### Helper
+bpf を open(2) するには特権が必要なので Helper がやる。それ以降の bpf への ioctl(2) は
+特権が不要なのでアプリがやる。
 
 
 ## 類似品調査
@@ -126,3 +137,4 @@ bpf は NSInputStream, NSFileHandle どっちで扱う?
  - 4GB 超えの pcap ファイルを読める
  - コマンドラインツール
  - フォーマットのエラーはそれとわかるように表示する(背景を赤にする等)
+ - Cocoa Bindings 使ってきれいに(?)する

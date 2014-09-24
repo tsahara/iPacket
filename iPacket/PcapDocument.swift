@@ -11,6 +11,7 @@ import Cocoa
 class PcapDocument: NSDocument {
     var pcap: Pcap? = nil
     var bpf: BPF? = nil
+    var window: PcapWindowController? = nil
 
     override init() {
         super.init()
@@ -25,9 +26,8 @@ class PcapDocument: NSDocument {
         
         // Document is created by "File > New"
         println("doc init type")
-        self.bpf = BPF()
-        
-        //self.pcap =
+        self.pcap = Pcap(byteorder: .LittleEndian)
+        self.bpf = BPF(pcap: self.pcap!, document: self)
     }
     
     override func windowControllerDidLoadNib(aController: NSWindowController) {
@@ -48,13 +48,14 @@ class PcapDocument: NSDocument {
 //    }
     
     override func makeWindowControllers() {
-        self.addWindowController(PcapWindowController(windowNibName: "PcapDocument"))
+        self.window = PcapWindowController(windowNibName: "PcapDocument")
+        self.addWindowController(self.window)
     }
 
     override func dataOfType(typeName: String?, error outError: NSErrorPointer) -> NSData? {
         // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
         // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-        outError.memory = NSError.errorWithDomain(NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        outError.memory = NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
         return nil
     }
 
@@ -67,6 +68,12 @@ class PcapDocument: NSDocument {
             return true
         } else {
             return false
+        }
+    }
+    
+    func add_packet(pkt: Packet) {
+        if (window != nil) {
+            window?.add_packet(pkt)
         }
     }
 }

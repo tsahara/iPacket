@@ -18,6 +18,6 @@ class IPv6Address: Field {
     func description() -> String {
         var buf = [Int8](count: 48, repeatedValue: 0)
         inet_ntop(AF_INET6, data.bytes, &buf, socklen_t(buf.count))
-        return NSString.stringWithCString(buf, encoding: NSASCIIStringEncoding)
+        return NSString(CString: buf, encoding: NSASCIIStringEncoding)!
     }
 }

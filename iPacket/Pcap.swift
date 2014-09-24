@@ -15,19 +15,14 @@ enum ByteOrder {
 let PCAPMAGIC: UInt32 = 0xa1b2c3d4
 
 class Pcap {
-    let data: NSData
+    let data: NSData? = nil
     let byteorder: ByteOrder
     var packets: [Packet] = []
     
-    init(data: NSData, magic: UInt32) {
-        if magic == PCAPMAGIC {
-            self.byteorder = .BigEndian
-        } else {
-            self.byteorder = .LittleEndian
-        }
-        self.data = data
+    init(byteorder: ByteOrder) {
+        self.byteorder = byteorder
     }
-    
+
     class func parse(data: NSData, error outError: NSErrorPointer) -> Pcap? {
         var ptr = data.bytes
         var len = data.length
@@ -68,7 +63,14 @@ class Pcap {
         
         // linktype
 
-        let pcap = Pcap(data: data, magic: data.u32(0))
+        var byteorder: ByteOrder
+        if header.magic == PCAPMAGIC {
+            byteorder = .BigEndian
+        } else {
+            byteorder = .LittleEndian
+        }
+
+        let pcap = Pcap(byteorder: byteorder)
         let hint = ParseHints(endian: pcap.byteorder, first_parser: parser)
 
         while len > 16 {
@@ -83,5 +85,9 @@ class Pcap {
         }
         
         return pcap;
+    }
+    
+    func add_packet(pkt: Packet) {
+        packets.append(pkt)
     }
 }

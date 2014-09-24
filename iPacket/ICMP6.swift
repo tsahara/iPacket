@@ -16,7 +16,6 @@ class ICMP6: HeaderImpl {
     
     override class func parse(bytes: NSData, hint: ParseHints) -> Header {
         let h = self(length: 8)
-        println("icmp5")
         return h
     }
 }

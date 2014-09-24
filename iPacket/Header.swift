@@ -25,7 +25,7 @@ class HeaderImpl: Header {
     var next_parser: ((bytes: NSData, hint: ParseHints) -> Header)? = nil
 
     var name: String {
-        return type.toRaw()
+        return type.rawValue
     }
 
     init(type: HeaderType) {
@@ -42,6 +42,7 @@ class DummyHeader: HeaderImpl {
 }
 
 enum HeaderType: String {
+    case Ethernet = "ethernet"
     case ICMP6 = "icmp6"
     case IPv6 = "ipv6"
     case Loopback = "loopback"

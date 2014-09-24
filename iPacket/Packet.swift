@@ -8,32 +8,6 @@
 
 import Foundation
 
-extension NSData {
-    func u8(offset: Int) -> UInt8 {
-        if offset < length {
-            return UnsafePointer<UInt8>(bytes + offset).memory
-        } else {
-            return 0
-        }
-    }
-    
-    func u32(offset: Int) -> UInt32 {
-        if offset + 3 < length {
-            return UnsafePointer<UInt32>(bytes + offset).memory
-        } else {
-            return 0
-        }
-    }
-
-    func u32le(offset: Int) -> UInt32 {
-        var n = UInt32(self.u8(offset + 0))
-        n += UInt32(self.u8(offset + 1)) * 0x100
-        n += UInt32(self.u8(offset + 2)) * 0x10000
-        n += UInt32(self.u8(offset + 3)) * 0x1000000
-        return n
-    }
-}
-
 class Packet {
     let data: NSData
     
@@ -49,6 +23,7 @@ class Packet {
     init(pointer: UnsafePointer<Void>, length: Int, hint: ParseHints) {
         if length < 16 {
             // XXX: length error
+            println("Pakcet.init length error")
         }
         
         // XXX: header should be parsed by caller(Pcap)...?
@@ -65,7 +40,13 @@ class Packet {
         
         // captured_length <= length + ? ...?
 
-        self.data = NSData(bytes: pointer + 16, length: length)
+        var hdrsize: Int
+        if (hint.from_bpf) {
+            hdrsize = 18
+        } else {
+            hdrsize = 16
+        }
+        self.data = NSData(bytes: pointer + hdrsize, length: length)
 
         headers = []
 
