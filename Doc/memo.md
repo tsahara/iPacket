@@ -124,17 +124,3 @@ bpf を open(2) するには特権が必要なので Helper がやる。それ�
 
 ## 類似品調査
  - Apple のライブラリの "Getting a Packet Trace"
-
-## 0.1 までにやること
- - hexadump から pcap を作る
- - ipv6, udp6, dhcp6 のパーザ
-
-## 1.0 までにやること
- - Page Setup と Print のメニューを外すか実装する
- - pcap をライブでキャプチャできる
-
-## そのうちやること
- - 4GB 超えの pcap ファイルを読める
- - コマンドラインツール
- - フォーマットのエラーはそれとわかるように表示する(背景を赤にする等)
- - Cocoa Bindings 使ってきれいに(?)する

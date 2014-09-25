@@ -84,7 +84,7 @@ class PcapWindowController: NSWindowController, NSTableViewDataSource, NSTableVi
     @IBOutlet weak var tableView: NSTableView!
     
     func add_packet(pkt: Packet) {
-        if (self.tableView != nil) {
+        if (self.tableView != nil && self.document != nil) {
             let document = self.document as PcapDocument
             tableView.insertRowsAtIndexes(NSIndexSet(index: document.pcap!.packets.count), withAnimation: .EffectNone)
         }
