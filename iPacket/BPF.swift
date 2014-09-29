@@ -16,7 +16,7 @@ class BPF {
     init(pcap: Pcap, document: PcapDocument) {
         fh = NSFileHandle(forReadingAtPath: "/dev/bpf3")!
         let bpf = fh.fileDescriptor
-        let r = bpf_setup(bpf, "en0")
+        let r = bpf_setup(bpf, nil)
         println("bpf_setup =>", r)
         if (r != 0) {
             self.document = document
@@ -38,17 +38,20 @@ class BPF {
             println("read \(len) bytes")
             
             while len > 18 {
-                var pkt = Packet(pointer: ptr, length: len, hint: hint)
-                pcap.add_packet(pkt)
-                if pkt.captured_length == 0 {
-                    // XXX: error!
-                    println("caplen=0")
-                    break
-                }
-                ptr += pkt.captured_length + 18
-                len -= pkt.captured_length - 18
+                let hdr = UnsafePointer<bpf_hdr>(ptr).memory
+                println("hdrlen=", hdr.bh_hdrlen)
                 
-                self.document.add_packet(pkt)
+//                var pkt = Packet(pointer: ptr, length: len, hint: hint)
+//                pcap.add_packet(pkt)
+//                if pkt.captured_length == 0 {
+//                    // XXX: error!
+//                    println("caplen=0")
+//                    break
+//                }
+//                ptr += pkt.captured_length + 18
+//                len -= pkt.captured_length - 18
+//                
+//                self.document.add_packet(pkt)
                 break
             }
         }

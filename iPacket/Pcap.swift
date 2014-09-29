@@ -74,7 +74,7 @@ class Pcap {
         let hint = ParseHints(endian: pcap.byteorder, first_parser: parser)
 
         while len > 16 {
-            var pkt = Packet(pointer: ptr, length: len, hint: hint)
+            var pkt = Pcap.parse_a_packet(ptr, length: len, hint: hint)
             pcap.packets.append(pkt)
             if pkt.captured_length == 0 {
                 // XXX: error!
@@ -86,6 +86,37 @@ class Pcap {
         
         return pcap;
     }
+
+    class func parse_a_packet(pointer: UnsafePointer<Void>, length: Int, hint: ParseHints) -> Packet {
+        if length < 16 {
+            // XXX: length error
+            println("Pakcet.init length error")
+        }
+        
+        // XXX: header should be parsed by caller(Pcap)...?
+        //      because endian of packet header is dependent on Pcap file
+        
+        let packet_header = NSData(bytes: pointer, length: 16)
+        
+        let tv_sec  = packet_header.u32le(0)
+        let tv_usec = packet_header.u32le(4)
+        let sec = Double(tv_sec) + 1.0e-6 * Double(tv_usec)
+        let timestamp = NSDate(timeIntervalSince1970: sec)
+        let captured_length = Int(packet_header.u32le(8))
+        let packet_length   = Int(packet_header.u32le(12))
+        
+        // captured_length <= length + ? ...?
+        
+        var hdrsize: Int
+        if (hint.from_bpf) {
+            hdrsize = 18
+        } else {
+            hdrsize = 16
+        }
+        
+        return Packet(timestamp: timestamp, caplen: captured_length, pktlen: packet_length, data: NSData(bytes: pointer + 16, length: length), hint: hint)
+    }
+
     
     func add_packet(pkt: Packet) {
         packets.append(pkt)

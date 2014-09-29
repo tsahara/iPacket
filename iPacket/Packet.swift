@@ -20,47 +20,25 @@ class Packet {
     var src: String?
     var dst: String?
 
-    init(pointer: UnsafePointer<Void>, length: Int, hint: ParseHints) {
-        if length < 16 {
-            // XXX: length error
-            println("Pakcet.init length error")
-        }
-        
-        // XXX: header should be parsed by caller(Pcap)...?
-        //      because endian of packet header is dependent on Pcap file
-       
-        let packet_header = NSData(bytes: pointer, length: 16)
+    init(timestamp: NSDate, caplen: Int, pktlen: Int, data: NSData, hint: ParseHints) {
+        self.timestamp = timestamp
+        self.captured_length = caplen
+        self.packet_length = pktlen
 
-        let tv_sec  = packet_header.u32le(0)
-        let tv_usec = packet_header.u32le(4)
-        let sec = Double(tv_sec) + 1.0e-6 * Double(tv_usec)
-        timestamp = NSDate(timeIntervalSince1970: sec)
-        captured_length = Int(packet_header.u32le(8))
-        packet_length   = Int(packet_header.u32le(12))
-        
-        // captured_length <= length + ? ...?
-
-        var hdrsize: Int
-        if (hint.from_bpf) {
-            hdrsize = 18
-        } else {
-            hdrsize = 16
-        }
-        self.data = NSData(bytes: pointer + hdrsize, length: length)
-
-        headers = []
+        self.data = data
+        self.headers = []
 
         var ptr  = 0
         var last = captured_length
         var parser = hint.first_parser
         while ptr < last {
             let pdu = parser(data.subdataWithRange(NSRange(ptr...last)), hint)
-//println("length=\(length), ptr=\(ptr), last=\(last), pdu.length=\(pdu.length)")
+            //println("length=\(length), ptr=\(ptr), last=\(last), pdu.length=\(pdu.length)")
             if pdu.length == 0 {
                 /* XXX */
             }
             headers.append(pdu)
-
+            
             if let p = pdu.next_parser {
                 parser = p
             } else {
@@ -72,6 +50,7 @@ class Packet {
         self.src = hint.src
         self.dst = hint.dst
     }
+    
 
     var proto: Header {
     get {

@@ -11,15 +11,38 @@
 @import Darwin.POSIX.net;
 @import Darwin.POSIX.ioctl;
 
+#include <sys/socket.h>
 #include <net/bpf.h>
+#include <ifaddrs.h>
+
 #include <string.h>
 
+
+const char *default_interface(void)
+{
+    struct ifaddrs *ifa, *ifa0;
+    static char ifname[20];
+    
+    ifname[0] = '\0';
+    (void)getifaddrs(&ifa0);
+    for (ifa = ifa0; ifa != NULL; ifa = ifa->ifa_next) {
+        if (ifa->ifa_addr->sa_family == AF_INET) {
+            strlcpy(ifname, ifa->ifa_name, sizeof(ifname));
+            break;
+        }
+    }
+    freeifaddrs(ifa0);
+    return ifname;
+}
 
 int bpf_setup(int fd, const char *ifname)
 {
     struct ifreq ifr;
     unsigned int k;
 
+    if (ifname == NULL)
+        ifname = default_interface();
+    
     k = 2000;
     if (ioctl(fd, BIOCSBLEN, &k) == -1)
         return -1;
