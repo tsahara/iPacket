@@ -16,7 +16,7 @@ class BPF {
     init(pcap: Pcap, document: PcapDocument) {
         fh = NSFileHandle(forReadingAtPath: "/dev/bpf3")!
         let bpf = fh.fileDescriptor
-        let r = bpf_setup(bpf, nil)
+        let r = bpf_setup(bpf, "en1")
         println("bpf_setup =>", r)
         if (r != 0) {
             self.document = document
@@ -34,25 +34,37 @@ class BPF {
         fh.readabilityHandler = { (fh) in
             var buf = [UInt8](count: 2000, repeatedValue: 0)
             var ptr = UnsafeMutablePointer<UInt8>(buf)
-            var len = read(fh.fileDescriptor, ptr, 2000)
-            println("read \(len) bytes")
-            
-            while len > 18 {
+            var buflen = read(fh.fileDescriptor, ptr, 2000)
+            println("read \(buflen) bytes")
+           
+            while buflen > sizeof(bpf_hdr) {
                 let hdr = UnsafePointer<bpf_hdr>(ptr).memory
-                println("hdrlen=", hdr.bh_hdrlen)
                 
-//                var pkt = Packet(pointer: ptr, length: len, hint: hint)
-//                pcap.add_packet(pkt)
-//                if pkt.captured_length == 0 {
-//                    // XXX: error!
-//                    println("caplen=0")
-//                    break
-//                }
-//                ptr += pkt.captured_length + 18
-//                len -= pkt.captured_length - 18
-//                
-//                self.document.add_packet(pkt)
-                break
+                if (UInt32(hdr.bh_hdrlen) + hdr.bh_caplen > UInt32(buflen)) {
+                    println("BPF hdrlen + caplen > buf???")
+                    break
+                }
+
+                let sec = Double(hdr.bh_tstamp.tv_sec) + 1.0e-6 * Double(hdr.bh_tstamp.tv_usec)
+                let ts  = NSDate(timeIntervalSince1970: sec)
+                let p   = ptr + Int(hdr.bh_hdrlen)
+                let d   = NSData(bytes: p, length: Int(hdr.bh_caplen))
+                
+                var pkt = Packet(timestamp: ts,
+                    caplen: Int(hdr.bh_caplen),
+                    pktlen: Int(hdr.bh_datalen),
+                    data: d,
+                    hint: hint)
+
+                pcap.add_packet(pkt)
+                self.document.add_packet(pkt)
+
+                if pkt.captured_length == 0 {
+                    println("caplen=0")
+                    break
+                }
+                ptr += Int(hdr.bh_hdrlen) + pkt.captured_length
+                buflen -= Int(hdr.bh_hdrlen) + pkt.captured_length
             }
         }
     }

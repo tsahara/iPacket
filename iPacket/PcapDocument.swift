@@ -63,10 +63,11 @@ class PcapDocument: NSDocument {
         // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
 //        outError.memory = NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
         
-        var data = NSData()
-        // write file header
-        // write packets...
-        return data
+        if let pcap = self.pcap {
+            return pcap.toData()
+        } else {
+            return NSData()
+        }
     }
 
     override func readFromData(data: NSData?, ofType typeName: String?, error outError: NSErrorPointer) -> Bool {

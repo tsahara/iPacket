@@ -11,7 +11,6 @@ import Foundation
 class Packet {
     let data: NSData
     
-    // struct pcap_pkthdr
     var timestamp: NSDate
     var captured_length: Int
     var packet_length: Int
@@ -32,7 +31,7 @@ class Packet {
         var last = captured_length
         var parser = hint.first_parser
         while ptr < last {
-            let pdu = parser(data.subdataWithRange(NSRange(ptr...last)), hint)
+            let pdu = parser(data.subdataWithRange(NSRange(ptr..<last)), hint)
             //println("length=\(length), ptr=\(ptr), last=\(last), pdu.length=\(pdu.length)")
             if pdu.length == 0 {
                 /* XXX */
@@ -50,7 +49,6 @@ class Packet {
         self.src = hint.src
         self.dst = hint.dst
     }
-    
 
     var proto: Header {
     get {

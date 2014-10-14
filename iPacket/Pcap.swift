@@ -121,4 +121,28 @@ class Pcap {
     func add_packet(pkt: Packet) {
         packets.append(pkt)
     }
+    
+    func toData() -> NSData {
+        // calculate file size
+        
+        // allocate buffer
+        
+        //var buf =
+        // write file header
+        
+        
+        //        bpf_u_int32 magic;
+        //        u_short version_major;
+        //        u_short version_minor;
+        //        bpf_int32 thiszone;     /* gmt to local correction */
+        //        bpf_u_int32 sigfigs;    /* accuracy of timestamps */
+        //        bpf_u_int32 snaplen;    /* max length saved portion of each pkt */
+        //        bpf_u_int32 linktype;   /* data link type (LINKTYPE_*) */
+        
+        // write packets...
+        
+        // make NSData
+        
+        return NSData()
+    }
 }

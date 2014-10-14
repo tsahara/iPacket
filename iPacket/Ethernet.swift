@@ -20,7 +20,7 @@ final class EthernetProtocol: HeaderImpl {
         let h = EthernetProtocol(length: 14)
 
         let ethertype = bytes.u16(12)
-        println("ether = ", ethertype, bytes.description)
+//        println("ether = ", ethertype, bytes.description)
         
         switch ethertype {
         case 0x86dd:

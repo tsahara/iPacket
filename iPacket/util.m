@@ -15,6 +15,8 @@
 #include <net/bpf.h>
 #include <ifaddrs.h>
 
+#include <pcap/pcap.h>
+
 #include <string.h>
 
 
@@ -22,7 +24,7 @@ const char *default_interface(void)
 {
     struct ifaddrs *ifa, *ifa0;
     static char ifname[20];
-    
+   
     ifname[0] = '\0';
     (void)getifaddrs(&ifa0);
     for (ifa = ifa0; ifa != NULL; ifa = ifa->ifa_next) {
