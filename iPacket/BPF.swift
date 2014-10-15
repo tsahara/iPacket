@@ -16,7 +16,7 @@ class BPF {
     init(pcap: Pcap, document: PcapDocument) {
         fh = NSFileHandle(forReadingAtPath: "/dev/bpf3")!
         let bpf = fh.fileDescriptor
-        let r = bpf_setup(bpf, "en1")
+        let r = bpf_setup(bpf, "en4")
         println("bpf_setup =>", r)
         if (r != 0) {
             self.document = document

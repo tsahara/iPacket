@@ -123,26 +123,28 @@ class Pcap {
     }
     
     func toData() -> NSData {
-        // calculate file size
+        var data = NSMutableData()
         
-        // allocate buffer
-        
-        //var buf =
         // write file header
-        
-        
-        //        bpf_u_int32 magic;
-        //        u_short version_major;
-        //        u_short version_minor;
-        //        bpf_int32 thiszone;     /* gmt to local correction */
-        //        bpf_u_int32 sigfigs;    /* accuracy of timestamps */
-        //        bpf_u_int32 snaplen;    /* max length saved portion of each pkt */
-        //        bpf_u_int32 linktype;   /* data link type (LINKTYPE_*) */
-        
+        let maxsnaplen = bpf_u_int32(2000)  // XXX
+        var filehdr = pcap_file_header(magic: PCAPMAGIC, version_major: 2,
+            version_minor: 4, thiszone: 0, sigfigs: 0, snaplen: maxsnaplen,
+            linktype: 0)
+        // XXX: linktype
+        data.appendBytes(&filehdr, length: sizeof(pcap_file_header))
+
         // write packets...
+        for pkt in packets {
+            let sec     = pkt.timestamp.timeIntervalSince1970
+            let ts_sec  = UInt32(sec)
+            let ts_usec = UInt32((sec - floor(sec)) * 1.0e+6)
+            var pkthdr: [UInt32] = [ ts_sec, ts_usec, UInt32(pkt.captured_length), UInt32(pkt.packet_length) ]
+            data.appendBytes(&pkthdr, length: 16)
+            
+            // append packet payload
+            data.appendData(pkt.data)
+        }
         
-        // make NSData
-        
-        return NSData()
+        return data
     }
 }
